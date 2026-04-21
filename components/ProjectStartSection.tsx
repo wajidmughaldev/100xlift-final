@@ -142,9 +142,9 @@ const ProjectStartSection = () => {
                   AW
                 </div>
                 <div className="max-w-[240px] pt-1 sm:max-w-[280px] sm:pt-2">
-                  <h3 className="text-[1rem] font-semibold leading-[1.08] text-white sm:text-[18px]">
+                  <p className="text-[1rem] font-semibold leading-[1.08] text-white sm:text-[18px]">
                     Abdul Wajid Khan -
-                  </h3>
+                  </p>
                   <p className="mt-1 text-[0.82rem] leading-[1.15] text-white/90 sm:text-[14px]">
                     Project Coordinator
                   </p>

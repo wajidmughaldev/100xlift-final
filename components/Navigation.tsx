@@ -1,15 +1,21 @@
 ﻿'use client'
 
 import React, { useEffect, useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react'
 
-import CalendarBookingModal from './CalendarBookingModal'
-import ProposalRequestModal from './ProposalRequestModal'
 import { useTheme } from './theme-provider'
 import { IconCircleButton } from './ui/icon-circle-button'
+
+const CalendarBookingModal = dynamic(() => import('./CalendarBookingModal'), {
+  ssr: false,
+})
+const ProposalRequestModal = dynamic(() => import('./ProposalRequestModal'), {
+  ssr: false,
+})
 
 type NavLink = {
   href: string
@@ -291,14 +297,18 @@ const Navigation = () => {
         </div>
       ) : null}
 
-      <ProposalRequestModal
-        isOpen={isProposalOpen}
-        onClose={() => setIsProposalOpen(false)}
-      />
-      <CalendarBookingModal
-        isOpen={isCalendarOpen}
-        onClose={() => setIsCalendarOpen(false)}
-      />
+      {isProposalOpen ? (
+        <ProposalRequestModal
+          isOpen={isProposalOpen}
+          onClose={() => setIsProposalOpen(false)}
+        />
+      ) : null}
+      {isCalendarOpen ? (
+        <CalendarBookingModal
+          isOpen={isCalendarOpen}
+          onClose={() => setIsCalendarOpen(false)}
+        />
+      ) : null}
     </>
   )
 }

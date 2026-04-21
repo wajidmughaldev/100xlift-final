@@ -153,7 +153,7 @@ function TestimonialCard({
           {item.avatarLabel}
         </div>
         <div className="text-left">
-          <h4 className="text-[14px] font-semibold leading-none">{item.name}</h4>
+          <p className="text-[14px] font-semibold leading-none">{item.name}</p>
           <p className="mt-1 text-[12px] italic leading-none opacity-80">{item.role}</p>
         </div>
       </div>
