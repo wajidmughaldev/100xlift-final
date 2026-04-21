@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236.81 236.81">
+  <defs>
+    <linearGradient id="x-gradient-top" x1="77.62" y1="-45.49" x2="153.55" y2="78.87" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#bfef2e"/>
+      <stop offset=".5" stop-color="#abc246"/>
+      <stop offset="1" stop-color="#92c201"/>
+    </linearGradient>
+    <linearGradient id="x-gradient-bottom" x1="118.88" y1="133.58" x2="117.42" y2="237.73" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#bfef2e"/>
+      <stop offset=".5" stop-color="#abc246"/>
+      <stop offset="1" stop-color="#92c201"/>
+    </linearGradient>
+  </defs>
+  <rect width="236.81" height="236.81" rx="52" fill="#050505"/>
+  <path fill="url(#x-gradient-top)" d="M204.13 20.63c0 47.7-38.67 86.37-86.37 86.37s-86.38-38.67-86.38-86.37H1c0 64.49 52.27 116.76 116.76 116.76S234.51 85.12 234.51 20.63h-30.38Z"/>
+  <path fill="url(#x-gradient-bottom)" d="M234.51 236.81h-30.38c0-47.7-38.67-86.37-86.37-86.37S31.38 189.11 31.38 236.81H1c0-64.49 52.27-116.76 116.76-116.76S234.51 172.32 234.51 236.81Z"/>
+</svg>
