@@ -1,16 +1,10 @@
-'use client'
-
 import React from 'react'
 import Image from 'next/image'
-import { Award, MoveUpRight, Phone } from 'lucide-react'
+import { Award } from 'lucide-react'
+import BannerActions from './BannerActions'
 import FeatureStrip from './FeatureStrip'
-import { CTAButton } from './ui/cta-button'
 
 const Banner = () => {
-  const openCalendarModal = () => {
-    window.dispatchEvent(new Event('open-calendar-modal'))
-  }
-
   return (
     <section
       className="relative flex min-h-[560px] flex-col items-center justify-center gap-6 overflow-hidden rounded-[1rem] bg-black px-5 py-12 text-center sm:min-h-[620px] sm:px-8 sm:py-16 lg:min-h-[760px] lg:gap-8 lg:px-12"
@@ -20,12 +14,14 @@ const Banner = () => {
         className="banner-bg-motion absolute inset-0"
       >
         <Image
-          src="/banner-bg-gradient.png"
+          src="/banner-bg-gradient-lcp.webp"
           alt=""
           fill
           priority
+          fetchPriority="high"
+          unoptimized
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 768px) 92vw, 92vw"
         />
       </div>
 
@@ -53,24 +49,7 @@ const Banner = () => {
         presentation so they can build trust faster and generate better leads.
       </p>
 
-      <div className="relative z-[1] flex w-full max-w-[760px] flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-        <CTAButton
-          variant="discovery"
-          text="Book a Discovery Call"
-          icon={<Phone size={22} strokeWidth={2} />}
-          className="w-auto justify-start whitespace-nowrap !text-white text-[13px] sm:text-[16px]"
-          onClick={openCalendarModal}
-        />
-        <CTAButton
-          variant="secondary"
-          text="Explore Our Work"
-          icon={<MoveUpRight size={22} strokeWidth={2} />}
-          className="w-auto whitespace-nowrap px-5 text-[13px] sm:px-6 sm:text-[16px]"
-          onClick={() => {
-            window.location.hash = 'case-studies'
-          }}
-        />
-      </div>
+      <BannerActions />
     </section>
   )
 }

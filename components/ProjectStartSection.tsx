@@ -130,7 +130,7 @@ const ProjectStartSection = () => {
           className="relative flex flex-col px-4 py-6 sm:min-h-[620px] sm:px-8 sm:py-8 lg:min-h-[720px] lg:justify-between lg:px-10 lg:py-10"
           style={{
             backgroundColor: '#000',
-            backgroundImage: "url('/banner-bg-gradient.png')",
+            backgroundImage: "url('/banner-bg-gradient-lcp.webp')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
