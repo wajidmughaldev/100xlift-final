@@ -9,9 +9,14 @@ import { getCategories, mapTermToSummary } from '@/lib/wordpress'
 export const dynamic = 'force-dynamic'
 export const revalidate = 300
 
+const siteUrl = 'https://100xlift.com'
+
 export const metadata: Metadata = {
   title: 'Categories | 100XLift',
   description: 'Browse all blog categories.',
+  alternates: {
+    canonical: `${siteUrl}/blog/category`,
+  },
 }
 
 export default async function Page() {

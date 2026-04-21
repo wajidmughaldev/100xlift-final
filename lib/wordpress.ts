@@ -1,6 +1,9 @@
 export type WPPost = {
   id: number;
   date: string;
+  date_gmt?: string;
+  modified?: string;
+  modified_gmt?: string;
   slug: string;
   link: string;
   title: {
@@ -65,6 +68,21 @@ export type WPTaxonomySummary = {
   imageUrl: string | null;
 };
 
+export type WPSitemapPost = {
+  id: number;
+  slug: string;
+  date?: string;
+  date_gmt?: string;
+  modified?: string;
+  modified_gmt?: string;
+};
+
+export type WPSitemapTerm = {
+  id: number;
+  slug: string;
+  count?: number;
+};
+
 export type BlogMappedPost = {
   id: number;
   slug: string;
@@ -114,6 +132,13 @@ export async function getPosts(): Promise<WPPost[]> {
   return wpFetch<WPPost[]>("/posts?_embed&per_page=12&orderby=date&order=desc");
 }
 
+export async function getSitemapPosts(): Promise<WPSitemapPost[]> {
+  if (!API_URL) return [];
+  return wpFetch<WPSitemapPost[]>(
+    "/posts?per_page=100&orderby=modified&order=desc&_fields=id,slug,date,date_gmt,modified,modified_gmt"
+  );
+}
+
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   if (!API_URL) return null;
   const posts = await wpFetch<WPPost[]>(`/posts?slug=${slug}&_embed`);
@@ -137,9 +162,19 @@ export async function getCategories(): Promise<WPTerm[]> {
   return wpFetch<WPTerm[]>("/categories?per_page=100&orderby=name&order=asc");
 }
 
+export async function getSitemapCategories(): Promise<WPSitemapTerm[]> {
+  if (!API_URL) return [];
+  return wpFetch<WPSitemapTerm[]>("/categories?per_page=100&orderby=name&order=asc&_fields=id,slug,count");
+}
+
 export async function getTags(): Promise<WPTerm[]> {
   if (!API_URL) return [];
   return wpFetch<WPTerm[]>("/tags?per_page=100&orderby=name&order=asc");
+}
+
+export async function getSitemapTags(): Promise<WPSitemapTerm[]> {
+  if (!API_URL) return [];
+  return wpFetch<WPSitemapTerm[]>("/tags?per_page=100&orderby=name&order=asc&_fields=id,slug,count");
 }
 
 export async function getPostsByCategorySlug(slug: string): Promise<{ term: WPTerm | null; posts: WPPost[] }> {

@@ -14,6 +14,8 @@ type PageProps = {
 export const dynamic = 'force-dynamic'
 export const revalidate = 300
 
+const siteUrl = 'https://100xlift.com'
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const { term } = await getPostsByTagSlug(slug)
@@ -25,6 +27,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `#${term.name} Posts | 100XLift`,
     description: `Browse posts tagged with ${term.name}.`,
+    alternates: {
+      canonical: `${siteUrl}/blog/tag/${term.slug}`,
+    },
   }
 }
 

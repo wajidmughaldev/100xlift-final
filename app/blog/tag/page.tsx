@@ -8,9 +8,14 @@ import { getTags, mapTermToSummary } from '@/lib/wordpress'
 export const dynamic = 'force-dynamic'
 export const revalidate = 300
 
+const siteUrl = 'https://100xlift.com'
+
 export const metadata: Metadata = {
   title: 'Tags | 100XLift',
   description: 'Browse all blog tags.',
+  alternates: {
+    canonical: `${siteUrl}/blog/tag`,
+  },
 }
 
 export default async function Page() {
