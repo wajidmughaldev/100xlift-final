@@ -56,32 +56,69 @@ const Navigation = () => {
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsStickyActive(window.scrollY > 12)
+    let animationFrame = 0
 
-      const offset = window.scrollY + 180
-      let currentHref = sectionLinks[0]?.href ?? ''
-
-      sectionIds.forEach((id, index) => {
-        const section = document.getElementById(id)
-        if (!section) return
-
-        if (offset >= section.offsetTop) {
-          currentHref = sectionLinks[index]?.href ?? currentHref
-        }
+    const updateStickyState = () => {
+      setIsStickyActive((current) => {
+        const next = window.scrollY > 12
+        return current === next ? current : next
       })
+      animationFrame = 0
+    }
 
-      if (currentHref) {
-        setActiveSection(currentHref)
-      }
+    const handleScroll = () => {
+      if (animationFrame) return
+      animationFrame = window.requestAnimationFrame(updateStickyState)
     }
 
     if (pathname === '/') {
-      handleScroll()
+      updateStickyState()
       window.addEventListener('scroll', handleScroll, { passive: true })
     }
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame)
+      }
+    }
+  }, [pathname])
+
+  useEffect(() => {
+    if (pathname !== '/') return
+
+    const sections = sectionIds
+      .map((id, index) => ({
+        href: sectionLinks[index]?.href,
+        element: document.getElementById(id),
+      }))
+      .filter((item): item is { href: string; element: HTMLElement } => Boolean(item.href && item.element))
+
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        const nextHref = visibleEntries[0]?.target
+          ? sections.find((section) => section.element === visibleEntries[0].target)?.href
+          : undefined
+
+        if (nextHref) {
+          setActiveSection((current) => (current === nextHref ? current : nextHref))
+        }
+      },
+      {
+        rootMargin: '-25% 0px -60% 0px',
+        threshold: [0, 0.2, 0.5, 0.8],
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section.element))
+
+    return () => observer.disconnect()
   }, [pathname, sectionIds, sectionLinks])
 
   useEffect(() => {

@@ -39,30 +39,40 @@ const SiteFooter = () => {
   const sectionIds = useMemo(() => sectionLinks.map((link) => link.href.replace('#', '')), [sectionLinks])
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY + 180
-      let currentHref = sectionLinks[0]?.href ?? ''
+    if (pathname !== '/') return
 
-      sectionIds.forEach((id, index) => {
-        const section = document.getElementById(id)
-        if (!section) return
+    const sections = sectionIds
+      .map((id, index) => ({
+        href: sectionLinks[index]?.href,
+        element: document.getElementById(id),
+      }))
+      .filter((item): item is { href: string; element: HTMLElement } => Boolean(item.href && item.element))
 
-        if (offset >= section.offsetTop) {
-          currentHref = sectionLinks[index]?.href ?? currentHref
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        const nextHref = visibleEntries[0]?.target
+          ? sections.find((section) => section.element === visibleEntries[0].target)?.href
+          : undefined
+
+        if (nextHref) {
+          setActiveSection((current) => (current === nextHref ? current : nextHref))
         }
-      })
-
-      if (currentHref) {
-        setActiveSection(currentHref)
+      },
+      {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75],
       }
-    }
+    )
 
-    if (pathname === '/') {
-      handleScroll()
-      window.addEventListener('scroll', handleScroll, { passive: true })
-    }
+    sections.forEach((section) => observer.observe(section.element))
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => observer.disconnect()
   }, [pathname, sectionIds, sectionLinks])
 
   const isLinkActive = (link: FooterLink) => {

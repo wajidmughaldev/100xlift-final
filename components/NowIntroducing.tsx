@@ -1,11 +1,9 @@
-'use client'
-
 import React from 'react'
 import { Handshake, MoveUpRight } from 'lucide-react'
 
 import FeatureStrip from './FeatureStrip'
 import SectionIntro from './SectionIntro'
-import { CTAButton } from './ui/cta-button'
+import HashCTAButton from './HashCTAButton'
 
 type IntroCard = {
   id: number
@@ -143,14 +141,7 @@ const NowIntroducing = () => {
       </div>
 
       <div className="flex justify-center">
-        <CTAButton
-          variant="secondary"
-          text="Talk About Your Project"
-          icon={<MoveUpRight size={18} strokeWidth={2} />}
-          onClick={() => {
-            window.location.hash = 'contact'
-          }}
-        />
+        <HashCTAButton hash="contact" text="Talk About Your Project" />
       </div>
     </section>
   )

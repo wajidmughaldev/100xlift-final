@@ -1,19 +1,21 @@
 import React from 'react'
+import nextDynamic from 'next/dynamic'
 import Navigation from '@/components/Navigation'
 import Banner from '@/components/Banner'
 import TheRealProblem from '@/components/TheRealProblem'
 import SectionSpacer from '@/components/SectionSpacer'
 import WhatChange from '@/components/WhatChange'
 import NowIntroducing from '@/components/NowIntroducing'
-import CaseStudy from '@/components/CaseStudy'
 import Whyus from '@/components/Whyus'
 import OurProcess from '@/components/OurProcess'
-import FixFirstCallout from '@/components/FixFirstCallout'
-import Testimonials from '@/components/Testimonials'
-import QuestionsFAQ from '@/components/QuestionsFAQ'
-import FinalStatementCTA from '@/components/FinalStatementCTA'
-import ProjectStartSection from '@/components/ProjectStartSection'
-import SiteFooter from '@/components/SiteFooter'
+
+const CaseStudy = nextDynamic(() => import('@/components/CaseStudy'))
+const FixFirstCallout = nextDynamic(() => import('@/components/FixFirstCallout'))
+const Testimonials = nextDynamic(() => import('@/components/Testimonials'))
+const QuestionsFAQ = nextDynamic(() => import('@/components/QuestionsFAQ'))
+const FinalStatementCTA = nextDynamic(() => import('@/components/FinalStatementCTA'))
+const ProjectStartSection = nextDynamic(() => import('@/components/ProjectStartSection'))
+const SiteFooter = nextDynamic(() => import('@/components/SiteFooter'))
 
 export const dynamic = 'force-static'
 
