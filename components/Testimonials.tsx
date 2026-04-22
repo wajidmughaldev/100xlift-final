@@ -17,6 +17,7 @@ type TestimonialItem = {
   name: string
   role: string
   avatarLabel: string
+  avatarImage?: string
 }
 
 type TestimonialsProps = {
@@ -31,47 +32,42 @@ const defaultTestimonials: TestimonialItem[] = [
   {
     id: 1,
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-    highlights: ['reader will be distracted', 'readable content'],
-    name: 'Abdul Wajid Khan',
-    role: 'Developer',
-    avatarLabel: 'AW',
+      'Abdul is highly professional and solution-focused. The 100XLift team knew how to resolve every challenge we brought to the project.',
+    highlights: ['highly professional', 'solution-focused', 'resolve every challenge'],
+    name: 'Isaac',
+    role: 'Client',
+    avatarLabel: 'IS',
+    avatarImage: '/testimonials/isaac.png',
   },
   {
     id: 2,
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-    highlights: ['reader will be distracted', 'readable content'],
-    name: 'Abdul Wajid Khan',
-    role: 'Developer',
-    avatarLabel: 'AW',
+      'Abdul and the 100XLift team delivered excellent work ahead of schedule. Communication was clear throughout, every requirement was handled carefully, and the final quality exceeded expectations.',
+    highlights: ['excellent work ahead of schedule', 'Communication was clear', 'final quality exceeded expectations'],
+    name: 'Anthony Jones',
+    role: 'Client',
+    avatarLabel: 'AJ',
+    avatarImage: '/testimonials/anthony-jones.png',
   },
   {
     id: 3,
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-    highlights: ['reader will be distracted', 'readable content'],
-    name: 'Abdul Wajid Khan',
-    role: 'Developer',
-    avatarLabel: 'AW',
+      'I am grateful for the timely, courteous support. 100XLift listened carefully, solved both known and hidden issues, and saved me countless hours of frustration with practical technical guidance.',
+    highlights: ['timely, courteous support', 'saved me countless hours', 'practical technical guidance'],
+    name: 'Daniyal Perkins',
+    role: 'Client',
+    avatarLabel: 'DP',
+    avatarImage: '/testimonials/daniyal-perkins.png',
   },
   {
     id: 4,
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-    highlights: ['reader will be distracted', 'readable content'],
-    name: 'Abdul Wajid Khan',
-    role: 'Developer',
-    avatarLabel: 'AW',
-  },
-  {
-    id: 5,
-    quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
-    highlights: ['reader will be distracted', 'readable content'],
-    name: 'Abdul Wajid Khan',
-    role: 'Developer',
-    avatarLabel: 'AW',
+      'Working with Abdul and 100XLift has been a strong long-term experience. Across website design, SEO, graphics, video, and social support, they have been reliable, honest, and consistently helpful.',
+    highlights: ['strong long-term experience', 'reliable, honest', 'consistently helpful'],
+    name: 'Miranda Lau',
+    role: 'Client',
+    avatarLabel: 'ML',
+    avatarImage: '/testimonials/miranda-lau.png',
   },
 ]
 
@@ -149,9 +145,21 @@ function TestimonialCard({
       />
 
       <div className="mt-auto flex items-center gap-3 pt-6">
-        <div className="flex size-[52px] shrink-0 items-center justify-center rounded-full border border-black/20 bg-[linear-gradient(180deg,#274f40_0%,#0f1817_100%)] text-[14px] font-semibold text-[#d8ff71]">
-          {item.avatarLabel}
-        </div>
+        {item.avatarImage ? (
+          <div className="relative size-[52px] shrink-0 overflow-hidden rounded-full border border-black/20 bg-[linear-gradient(180deg,#274f40_0%,#0f1817_100%)]">
+            <Image
+              src={item.avatarImage}
+              alt={`${item.name} testimonial`}
+              fill
+              sizes="52px"
+              className="object-cover object-center"
+            />
+          </div>
+        ) : (
+          <div className="flex size-[52px] shrink-0 items-center justify-center rounded-full border border-black/20 bg-[linear-gradient(180deg,#274f40_0%,#0f1817_100%)] text-[14px] font-semibold text-[#d8ff71]">
+            {item.avatarLabel}
+          </div>
+        )}
         <div className="text-left">
           <p className="text-[14px] font-semibold leading-none">{item.name}</p>
           <p className="mt-1 text-[12px] italic leading-none opacity-80">{item.role}</p>

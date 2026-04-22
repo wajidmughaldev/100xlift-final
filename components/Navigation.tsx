@@ -171,14 +171,14 @@ const Navigation = () => {
               alt="100XLift logo"
               width={160}
               height={28}
-              className="h-auto w-32 md:w-40"
+              className="h-auto w-24 md:w-28 lg:w-32"
               style={{ height: 'auto' }}
             />
           </Link>
 
           <ul
-            className={`hidden list-none items-center gap-6 rounded-full px-8 py-4 transition-colors duration-300 md:flex ${
-              isStickyActive ? 'bg-transparent' : 'bg-[var(--nav-pill-bg)]'
+            className={`hidden list-none items-center gap-4 rounded-full px-6 py-3.5 transition-colors duration-300 md:flex xl:gap-6 xl:px-8 ${
+              isStickyActive && 'bg-transparent' 
             }`}
           >
             {navLinks.map((link) => {
@@ -188,7 +188,7 @@ const Navigation = () => {
                 <li key={link.label}>
                   <Link
                     href={getLinkHref(link)}
-                    className={`inline-flex items-center gap-2 transition-colors duration-200 ${
+                    className={`inline-flex items-center gap-2 whitespace-nowrap text-[0.98rem] transition-colors duration-200 ${
                       isActive
                         ? 'text-[#314100] dark:text-[#BFEF2E]'
                         : 'text-[var(--page-fg)] hover:text-[#314100] dark:hover:text-[#BFEF2E]'
@@ -206,7 +206,7 @@ const Navigation = () => {
               type="button"
               aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
               aria-pressed={true}
-              className="bg-[#314100] text-[#BFEF2E]"
+              className="size-11 bg-[#314100] text-[#BFEF2E]"
               onClick={toggleTheme}
             >
               <span
@@ -225,7 +225,7 @@ const Navigation = () => {
               type="button"
               aria-label="Book a calendar appointment"
               onClick={openCalendarModal}
-              className="inline-flex h-12 items-center gap-2 rounded-full border border-[#BFEF2E]/35 bg-[var(--surface-2)] px-5 text-sm font-bold text-[var(--page-fg)] transition hover:border-[#BFEF2E] hover:text-[#BFEF2E]"
+              className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full border border-[#BFEF2E]/35 bg-[var(--surface-2)] px-4 text-sm font-bold text-[var(--page-fg)] transition hover:border-[#BFEF2E] hover:text-[#BFEF2E]"
             >
               Let&apos;s talk
               <ArrowUpRight size={18} strokeWidth={2.4} />
@@ -235,7 +235,7 @@ const Navigation = () => {
               type="button"
               aria-label="Request a proposal"
               onClick={openProposalModal}
-              className="inline-flex h-12 items-center gap-2 rounded-full bg-[#314100] px-5 text-sm font-bold text-[#BFEF2E] transition hover:bg-[#405600]"
+              className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-[#314100] px-4 text-sm font-bold text-[#BFEF2E] transition hover:bg-[#405600]"
             >
               Request a proposal
               <ArrowUpRight size={18} strokeWidth={2.4} />
@@ -351,4 +351,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-

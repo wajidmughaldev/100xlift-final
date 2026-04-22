@@ -46,19 +46,24 @@ const faqItems = [
 
 const testimonialItems = [
   {
-    name: 'Abdul Wajid Khan',
+    name: 'Isaac',
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
+      'Abdul is highly professional and solution-focused. The 100XLift team knew how to resolve every challenge we brought to the project.',
   },
   {
-    name: 'Abdul Wajid Khan',
+    name: 'Anthony Jones',
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
+      'Abdul and the 100XLift team delivered excellent work ahead of schedule. Communication was clear throughout, every requirement was handled carefully, and the final quality exceeded expectations.',
   },
   {
-    name: 'Abdul Wajid Khan',
+    name: 'Daniyal Perkins',
     quote:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.',
+      'I am grateful for the timely, courteous support. 100XLift listened carefully, solved both known and hidden issues, and saved me countless hours of frustration with practical technical guidance.',
+  },
+  {
+    name: 'Miranda Lau',
+    quote:
+      'Working with Abdul and 100XLift has been a strong long-term experience. Across website design, SEO, graphics, video, and social support, they have been reliable, honest, and consistently helpful.',
   },
 ]
 

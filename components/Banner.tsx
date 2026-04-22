@@ -19,7 +19,6 @@ const Banner = () => {
           fill
           priority
           fetchPriority="high"
-          unoptimized
           className="object-cover"
           sizes="(max-width: 768px) 92vw, 92vw"
         />
