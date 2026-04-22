@@ -8,15 +8,15 @@ import SiteFooter from '../SiteFooter'
 const sectorCards = [
   {
     title: 'Dedicated Designers',
-    image: '/showcase-images/12.webp',
+    image: '/offsure/1.png',
   },
   {
     title: 'Development Pods',
-    image: '/showcase-images/4.webp',
+    image: '/offsure/2.png',
   },
   {
     title: 'Marketing Support',
-    image: '/showcase-images/3.webp',
+    image: '/offsure/3.png',
   },
 ]
 
@@ -111,7 +111,7 @@ const OffshorePopupContent = () => {
             <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px]">
               <div className="relative min-h-[280px] overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)] sm:min-h-[360px]">
                 <Image
-                  src="/showcase-images/1.webp"
+                  src="/offsure/ofsure%20banner.png"
                   alt="Offshore leadership"
                   fill
                   className="object-cover"
@@ -119,7 +119,7 @@ const OffshorePopupContent = () => {
                 />
               </div>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-                {['/showcase-images/10.webp', '/showcase-images/11.webp'].map((src) => (
+                {['/offsure/1.png', '/offsure/2.png'].map((src) => (
                   <div
                     key={src}
                     className="relative min-h-[132px] overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)] sm:min-h-[172px]"
@@ -154,7 +154,7 @@ const OffshorePopupContent = () => {
                 key={card.title}
                 className="group overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)]"
               >
-                <div className="relative h-[220px] overflow-hidden">
+                <div className="relative h-[350px] overflow-hidden">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -210,9 +210,9 @@ const OffshorePopupContent = () => {
             </div>
           </div>
 
-          <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)] sm:min-h-[360px]">
+          <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)] sm:min-h-[460px]">
             <Image
-              src="/showcase-images/9.png"
+              src="/offsure/outsourcing-vs-offsure.png"
               alt="Offshore workshop meeting"
               fill
               className="object-cover"
@@ -265,7 +265,7 @@ const OffshorePopupContent = () => {
 
           <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-[var(--outline-soft)] bg-[var(--surface-2)] sm:min-h-[420px]">
             <Image
-              src="/showcase-images/5.webp"
+              src="/offsure/ctaimage.png"
               alt="Offshore workflow planning"
               fill
               className="object-cover"

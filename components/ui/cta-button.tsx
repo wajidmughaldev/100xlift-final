@@ -36,24 +36,30 @@ const CTAButton = ({
   type = 'button',
   ...props
 }: CTAButtonProps) => {
+  const withGlassReflection = variant !== 'discovery'
+
   const iconNode = icon ? (
     variant === 'discovery' ? (
       <span className="flex size-[52px] items-center justify-center rounded-full bg-[#314100] text-[#BFEF2E] sm:size-[60px]">
         {icon}
       </span>
     ) : (
-      <span className="flex items-center justify-center">{icon}</span>
+      <span className="relative z-[1] flex items-center justify-center">{icon}</span>
     )
   ) : null
 
   return (
     <button
       type={type}
-      className={cn(ctaButtonVariants({ variant }), className)}
+      className={cn(
+        ctaButtonVariants({ variant }),
+        withGlassReflection && 'cta-glass-reflection',
+        className
+      )}
       {...props}
     >
       {iconNode}
-      <span>{text}</span>
+      <span className="relative z-[1]">{text}</span>
     </button>
   )
 }

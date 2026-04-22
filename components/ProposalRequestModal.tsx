@@ -11,6 +11,7 @@ import ThemeSelect from './ui/theme-select'
 type ProposalRequestModalProps = {
   isOpen: boolean
   onClose: () => void
+  initialProjectType?: string
 }
 
 type ProposalFormValues = {
@@ -62,7 +63,11 @@ const timelineOptions = [
   { label: 'Flexible', value: 'Flexible' },
 ]
 
-const ProposalRequestModal = ({ isOpen, onClose }: ProposalRequestModalProps) => {
+const ProposalRequestModal = ({
+  isOpen,
+  onClose,
+  initialProjectType = 'Web App',
+}: ProposalRequestModalProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   const {
@@ -81,12 +86,28 @@ const ProposalRequestModal = ({ isOpen, onClose }: ProposalRequestModalProps) =>
       phone: '',
       company: '',
       website: '',
-      projectType: 'Web App',
+      projectType: initialProjectType,
       budget: '',
       timeline: 'ASAP',
       details: '',
     },
   })
+
+  useEffect(() => {
+    if (!isOpen) return
+    reset({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      website: '',
+      projectType: initialProjectType,
+      budget: '',
+      timeline: 'ASAP',
+      details: '',
+    })
+    setFeedback(null)
+  }, [initialProjectType, isOpen, reset])
 
   useEffect(() => {
     if (!isOpen) return

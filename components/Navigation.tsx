@@ -38,6 +38,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [isProposalOpen, setIsProposalOpen] = useState(false)
+  const [proposalProjectType, setProposalProjectType] = useState('Web App')
   const [isStickyActive, setIsStickyActive] = useState(false)
   const [activeSection, setActiveSection] = useState('#services')
   const isDarkMode = theme === 'dark'
@@ -46,8 +47,9 @@ const Navigation = () => {
   const sectionIds = useMemo(() => sectionLinks.map((link) => link.href.replace('#', '')), [sectionLinks])
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false)
-  const openProposalModal = () => {
+  const openProposalModal = (projectType = 'Web App') => {
     setIsMobileMenuOpen(false)
+    setProposalProjectType(projectType)
     setIsProposalOpen(true)
   }
   const openCalendarModal = () => {
@@ -123,7 +125,10 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleOpenCalendar = () => setIsCalendarOpen(true)
-    const handleOpenProposal = () => setIsProposalOpen(true)
+    const handleOpenProposal = (event: Event) => {
+      const customEvent = event as CustomEvent<{ projectType?: string }>
+      openProposalModal(customEvent.detail?.projectType || 'Web App')
+    }
 
     window.addEventListener('open-calendar-modal', handleOpenCalendar)
     window.addEventListener('open-proposal-modal', handleOpenProposal)
@@ -225,20 +230,20 @@ const Navigation = () => {
               type="button"
               aria-label="Book a calendar appointment"
               onClick={openCalendarModal}
-              className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full border border-[#BFEF2E]/35 bg-[var(--surface-2)] px-4 text-sm font-bold text-[var(--page-fg)] transition hover:border-[#BFEF2E] hover:text-[#BFEF2E]"
+              className="cta-glass-reflection inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full border border-[#BFEF2E]/35 bg-[var(--surface-2)] px-4 text-sm font-bold text-[var(--page-fg)] transition hover:border-[#BFEF2E] hover:text-[#BFEF2E]"
             >
-              Let&apos;s talk
-              <ArrowUpRight size={18} strokeWidth={2.4} />
+              <span className="relative z-[1]">Let&apos;s talk</span>
+              <ArrowUpRight size={18} strokeWidth={2.4} className="relative z-[1]" />
             </button>
 
             <button
               type="button"
               aria-label="Request a proposal"
-              onClick={openProposalModal}
-              className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-[#314100] px-4 text-sm font-bold text-[#BFEF2E] transition hover:bg-[#405600]"
+              onClick={() => openProposalModal()}
+              className="cta-glass-reflection inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-[#314100] px-4 text-sm font-bold text-[#BFEF2E] transition hover:bg-[#405600]"
             >
-              Request a proposal
-              <ArrowUpRight size={18} strokeWidth={2.4} />
+              <span className="relative z-[1]">Request a proposal</span>
+              <ArrowUpRight size={18} strokeWidth={2.4} className="relative z-[1]" />
             </button>
           </div>
 
@@ -315,19 +320,19 @@ const Navigation = () => {
               <button
                 type="button"
                 onClick={openCalendarModal}
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#BFEF2E]/50 px-5 py-3 text-sm font-bold text-white"
+                className="cta-glass-reflection mt-8 inline-flex items-center gap-2 rounded-full border border-[#BFEF2E]/50 px-5 py-3 text-sm font-bold text-white"
               >
-                Let&apos;s talk
-                <ArrowUpRight size={17} strokeWidth={2.4} />
+                <span className="relative z-[1]">Let&apos;s talk</span>
+                <ArrowUpRight size={17} strokeWidth={2.4} className="relative z-[1]" />
               </button>
 
               <button
                 type="button"
-                onClick={openProposalModal}
-                className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#BFEF2E] px-5 py-3 text-sm font-bold text-[#101408]"
+                onClick={() => openProposalModal()}
+                className="cta-glass-reflection mt-3 inline-flex items-center gap-2 rounded-full bg-[#BFEF2E] px-5 py-3 text-sm font-bold text-[#101408]"
               >
-                Request a proposal
-                <ArrowUpRight size={17} strokeWidth={2.4} />
+                <span className="relative z-[1]">Request a proposal</span>
+                <ArrowUpRight size={17} strokeWidth={2.4} className="relative z-[1]" />
               </button>
             </nav>
           </div>
@@ -338,6 +343,7 @@ const Navigation = () => {
         <ProposalRequestModal
           isOpen={isProposalOpen}
           onClose={() => setIsProposalOpen(false)}
+          initialProjectType={proposalProjectType}
         />
       ) : null}
       {isCalendarOpen ? (
