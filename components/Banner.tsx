@@ -32,7 +32,7 @@ const Banner = () => {
       <FeatureStrip
         icon={<Award size={20} strokeWidth={2.2} />}
         text="Digital systems for growth-focused businesses"
-        className="relative z-[1] mx-auto max-w-[320px] justify-center text-left !text-white sm:max-w-full sm:justify-center sm:text-center"
+        className="relative z-[1] mx-auto max-w-[320px] justify-center text-center !text-white sm:max-w-full sm:justify-center sm:text-center"
       />
 
       <h1 className="relative z-[1] max-w-[980px] text-[2rem] leading-[1.08] tracking-[-0.05em] text-white sm:text-[2.8rem] md:text-[3.4rem] lg:text-[4.2rem] lg:leading-[1.02]">

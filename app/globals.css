@@ -168,12 +168,12 @@ option:focus {
   height: 0 !important;
 }
 
-.cta-glass-reflection {
+/* .cta-glass-reflection {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-}
-
+} */
+/* 
 .cta-glass-reflection::before {
   content: '';
   position: absolute;
@@ -207,7 +207,7 @@ option:focus {
   opacity: 0.58;
   pointer-events: none;
   z-index: 0;
-}
+} */
 
 .themed-scrollbar {
   scrollbar-width: thin;

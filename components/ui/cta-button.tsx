@@ -53,7 +53,7 @@ const CTAButton = ({
       type={type}
       className={cn(
         ctaButtonVariants({ variant }),
-        withGlassReflection && 'cta-glass-reflection',
+        // withGlassReflection && 'cta-glass-reflection',
         className
       )}
       {...props}

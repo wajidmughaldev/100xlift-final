@@ -182,7 +182,7 @@ const Navigation = () => {
           </Link>
 
           <ul
-            className={`hidden list-none items-center gap-4 rounded-full px-6 py-3.5 transition-colors duration-300 md:flex xl:gap-6 xl:px-8 ${
+            className={`hidden list-none items-center gap-4 rounded-full px-6 py-3.5 transition-colors duration-300 min-[1450px]:flex xl:gap-6 xl:px-8 ${
               isStickyActive && 'bg-transparent' 
             }`}
           >
@@ -206,7 +206,7 @@ const Navigation = () => {
             })}
           </ul>
 
-          <div className="hidden gap-2 md:flex">
+          <div className="hidden gap-2 min-[1450px]:flex">
             <IconCircleButton
               type="button"
               aria-label={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
@@ -251,7 +251,9 @@ const Navigation = () => {
             type="button"
             aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMobileMenuOpen}
-            className="inline-flex size-12 items-center justify-center rounded-full bg-[var(--surface-2)] text-[#BFEF2E] transition-transform duration-300 md:hidden"
+            className={`inline-flex size-12 items-center justify-center rounded-full bg-[var(--surface-2)] transition-transform duration-300 md:hidden ${
+              isDarkMode ? 'text-[#BFEF2E]' : 'text-[#1a2208]'
+            } md:inline-flex min-[1450px]:hidden`}
             onClick={() => setIsMobileMenuOpen((current) => !current)}
           >
             {isMobileMenuOpen ? <X size={22} strokeWidth={2.2} /> : <Menu size={22} strokeWidth={2.2} />}

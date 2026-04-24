@@ -767,17 +767,17 @@ const NowIntroducing = () => {
         }
       />
 
-      <div className="w-6/12 mx-auto flex flex-col items-center justify-center gap-3   p-4 sm:p-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted-fg)]">
+      <div className="mx-auto w-full max-w-[900px] p-4 sm:p-5">
+        <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-[var(--muted-fg)]">
           What do you want most right now?
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="popup-scrollbar-hidden flex flex-nowrap justify-start gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
           {goalFilters.map((item) => (
             <button
               key={item.key}
               type="button"
               onClick={() => setGoalFilter(item.key)}
-              className={`inline-flex h-10 items-center rounded-full px-4 text-sm font-semibold transition ${
+              className={`inline-flex h-10 shrink-0 items-center rounded-full px-4 text-sm font-semibold transition ${
                 goalFilter === item.key
                   ? 'bg-[#314100] text-[#BFEF2E]'
                   : 'border border-[var(--outline-soft)] bg-[var(--surface-2)] text-[var(--page-fg)] hover:border-[var(--page-fg)]/28'
@@ -986,4 +986,3 @@ const NowIntroducing = () => {
 
 export default NowIntroducing
 export { introCards }
-
