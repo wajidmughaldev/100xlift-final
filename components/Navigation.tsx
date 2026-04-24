@@ -251,7 +251,7 @@ const Navigation = () => {
             type="button"
             aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isMobileMenuOpen}
-            className={`hidden size-12 items-center justify-center rounded-full bg-[var(--surface-2)] transition-transform duration-300 md:inline-flex min-[1280px]:!hidden ${
+            className={`inline-flex size-12 items-center justify-center rounded-full bg-[var(--surface-2)] transition-transform duration-300 min-[1280px]:hidden ${
               isDarkMode ? 'text-[#BFEF2E]' : 'text-[#1a2208]'
             }`}
             onClick={() => setIsMobileMenuOpen((current) => !current)}
