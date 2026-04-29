@@ -33,6 +33,7 @@ function PostImage({ post, className, wrapperClassName }: { post: BlogMappedPost
         alt={post.featuredImageAlt || post.title}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 420px"
+        quality={90}
         className={className}
       />
     </div>
@@ -63,7 +64,7 @@ function TaxonomyChips({
 
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {categories.slice(0, 1).map((category) => (
+      {categories.map((category) => (
         <Link
           href={`/blog/category/${category.slug}`}
           key={category.id}
@@ -145,7 +146,7 @@ function TrendingPost({ post }: { post: BlogMappedPost }) {
           {post.title}
         </h3>
         <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--page-fg)]/65">
-          {post.categories.slice(0, 1).map((category) => (
+          {post.categories.map((category) => (
             <span key={category.id}>{category.name}</span>
           ))}
           <span>{post.readTime}</span>

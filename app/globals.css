@@ -401,6 +401,95 @@ body.popup-page-locked::-webkit-scrollbar {
   color: #8ab310 !important;
 }
 
+.wp-content blockquote,
+.wp-content blockquote.wp-block-quote,
+.wp-content .wp-block-quote,
+.wp-content .wp-block-pullquote {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  margin: 2rem 0 !important;
+  border: 1px solid var(--outline-soft) !important;
+  border-left: 6px solid var(--accent-lime) !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, var(--surface-1) 0%, var(--surface-2) 100%) !important;
+  box-shadow: 0 16px 34px rgba(49, 65, 0, 0.08);
+  color: var(--page-fg) !important;
+  padding: 1.6rem 1.6rem 1.45rem 2rem !important;
+  overflow: hidden;
+}
+
+.wp-content blockquote::before,
+.wp-content blockquote.wp-block-quote::before,
+.wp-content .wp-block-quote::before,
+.wp-content .wp-block-pullquote::before {
+  content: '"';
+  position: absolute;
+  z-index: -1;
+  top: 0.3rem;
+  right: 1.2rem;
+  left: auto;
+  color: color-mix(in srgb, var(--accent-lime) 34%, transparent);
+  font-family: Georgia, serif;
+  font-size: 6rem;
+  font-weight: 800;
+  line-height: 0.8;
+}
+
+.wp-content blockquote p,
+.wp-content blockquote.wp-block-quote p,
+.wp-content .wp-block-quote p,
+.wp-content .wp-block-pullquote p {
+  position: relative;
+  margin: 0 !important;
+  color: color-mix(in srgb, var(--page-fg) 88%, transparent) !important;
+  font-size: clamp(1.08rem, 1.35vw, 1.26rem) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 1.7 !important;
+}
+
+.wp-content blockquote p + p,
+.wp-content blockquote.wp-block-quote p + p,
+.wp-content .wp-block-quote p + p,
+.wp-content .wp-block-pullquote p + p {
+  margin-top: 0.9rem !important;
+}
+
+.wp-content blockquote strong,
+.wp-content blockquote.wp-block-quote strong,
+.wp-content .wp-block-quote strong,
+.wp-content .wp-block-pullquote strong {
+  color: var(--page-fg);
+  font-weight: 800;
+}
+
+.wp-content blockquote cite,
+.wp-content blockquote.wp-block-quote cite,
+.wp-content .wp-block-quote cite,
+.wp-content .wp-block-pullquote cite {
+  display: block;
+  margin-top: 0.9rem !important;
+  color: color-mix(in srgb, var(--page-fg) 58%, transparent) !important;
+  font-size: 0.9rem !important;
+  font-style: normal !important;
+}
+
+.wp-content .wp-block-pullquote {
+  border-left: 0;
+  border-top: 1px solid var(--outline-soft);
+  border-bottom: 1px solid var(--outline-soft);
+  text-align: center;
+}
+
+.wp-comment-content p {
+  margin: 0 0 0.75rem;
+}
+
+.wp-comment-content p:last-child {
+  margin-bottom: 0;
+}
+
 .wp-content .wp-block-heading {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;

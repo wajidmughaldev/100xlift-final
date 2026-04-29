@@ -15,6 +15,7 @@ export type WPPost = {
   content: {
     rendered: string;
   };
+  comment_status?: "open" | "closed";
   _embedded?: {
     author?: Array<{
       name: string;
@@ -22,6 +23,16 @@ export type WPPost = {
     "wp:featuredmedia"?: Array<{
       source_url: string;
       alt_text?: string;
+      media_details?: {
+        sizes?: Record<
+          string,
+          {
+            source_url?: string;
+            width?: number;
+            height?: number;
+          }
+        >;
+      };
     }>;
     "wp:term"?: Array<
       Array<{
@@ -95,8 +106,29 @@ export type BlogMappedPost = {
   authorName: string;
   featuredImage: string | null;
   featuredImageAlt: string;
+  commentsOpen: boolean;
   categories: WPTaxonomyItem[];
   tags: WPTaxonomyItem[];
+};
+
+export type WPComment = {
+  id: number;
+  post: number;
+  parent: number;
+  date: string;
+  author_name: string;
+  content: {
+    rendered: string;
+  };
+};
+
+export type BlogComment = {
+  id: number;
+  parent: number;
+  date: string;
+  dateLabel: string;
+  authorName: string;
+  contentHtml: string;
 };
 
 const DEFAULT_WP_API_URL = "https://cms.100xlift.com/wp-json/wp/v2";
@@ -127,6 +159,21 @@ async function wpFetch<T>(endpoint: string): Promise<T> {
   return res.json();
 }
 
+function getWordPressAuthHeader(): string | null {
+  const username =
+    process.env.WORDPRESS_COMMENT_USERNAME ||
+    process.env.WORDPRESS_USERNAME ||
+    "";
+  const password =
+    process.env.WORDPRESS_COMMENT_APP_PASSWORD ||
+    process.env.WORDPRESS_APP_PASSWORD ||
+    "";
+
+  if (!username.trim() || !password.trim()) return null;
+
+  return `Basic ${Buffer.from(`${username.trim()}:${password.trim()}`).toString("base64")}`;
+}
+
 export async function getPosts(): Promise<WPPost[]> {
   if (!API_URL) return [];
   return wpFetch<WPPost[]>("/posts?_embed&per_page=12&orderby=date&order=desc");
@@ -143,6 +190,60 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   if (!API_URL) return null;
   const posts = await wpFetch<WPPost[]>(`/posts?slug=${slug}&_embed`);
   return posts.length ? posts[0] : null;
+}
+
+export async function getCommentsByPostId(postId: number): Promise<WPComment[]> {
+  if (!API_URL) return [];
+  return wpFetch<WPComment[]>(
+    `/comments?post=${postId}&status=approve&orderby=date&order=asc&per_page=100`
+  );
+}
+
+export async function createComment(input: {
+  postId: number;
+  parentId?: number;
+  authorName: string;
+  authorEmail: string;
+  content: string;
+}): Promise<WPComment> {
+  if (!API_URL) {
+    throw new Error("WordPress API URL is not configured.");
+  }
+
+  const authHeader = getWordPressAuthHeader();
+  const res = await fetch(`${API_URL}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(authHeader ? { Authorization: authHeader } : {}),
+    },
+    body: JSON.stringify({
+      post: input.postId,
+      ...(input.parentId ? { parent: input.parentId } : {}),
+      author_name: input.authorName,
+      author_email: input.authorEmail,
+      content: input.content,
+    }),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    const fallbackMessage = `WordPress comment failed: ${res.status} ${res.statusText}`;
+    const responseText = await res.text();
+
+    try {
+      const payload = JSON.parse(responseText) as { code?: string; message?: string };
+      throw new Error([payload.code, payload.message].filter(Boolean).join(": ") || fallbackMessage);
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        throw new Error(responseText || fallbackMessage);
+      }
+
+      throw error;
+    }
+  }
+
+  return res.json();
 }
 
 export async function getCategoryBySlug(slug: string): Promise<WPTerm | null> {
@@ -220,7 +321,12 @@ export function decodeHtmlEntities(text: string): string {
 }
 
 export function getFeaturedImage(post: WPPost): string | null {
-  return post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
+  const media = post._embedded?.["wp:featuredmedia"]?.[0];
+  if (!media) return null;
+
+  const fullSize = media.media_details?.sizes?.full?.source_url;
+  const largeSize = media.media_details?.sizes?.large?.source_url;
+  return fullSize || media.source_url || largeSize || null;
 }
 
 export function getFeaturedImageAlt(post: WPPost): string {
@@ -343,6 +449,7 @@ export function mapWPPostToBlogPost(post: WPPost): BlogMappedPost {
     authorName: decodeHtmlEntities(getPostAuthor(post)),
     featuredImage: getFeaturedImage(post),
     featuredImageAlt: decodeHtmlEntities(getFeaturedImageAlt(post)),
+    commentsOpen: post.comment_status === "open",
     categories: getPostCategories(post).map((item) => ({
       id: item.id,
       slug: item.slug,
@@ -353,5 +460,16 @@ export function mapWPPostToBlogPost(post: WPPost): BlogMappedPost {
       slug: item.slug,
       name: decodeHtmlEntities(item.name),
     })),
+  };
+}
+
+export function mapWPCommentToBlogComment(comment: WPComment): BlogComment {
+  return {
+    id: comment.id,
+    parent: comment.parent,
+    date: comment.date,
+    dateLabel: formatWPDate(comment.date),
+    authorName: decodeHtmlEntities(comment.author_name),
+    contentHtml: comment.content.rendered,
   };
 }
