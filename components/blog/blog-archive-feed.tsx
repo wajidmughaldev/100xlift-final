@@ -248,7 +248,7 @@ export default function BlogArchiveFeed({
     >
       <div className="space-y-10 sm:space-y-12">
         <div className="rounded-[10px] border border-[var(--outline-soft)] bg-[var(--surface-1)] p-4 sm:p-5">
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_180px_180px_180px_auto]">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_200px_180px_120px_auto]">
             <input
               type="search"
               value={searchTerm}
@@ -326,7 +326,7 @@ export default function BlogArchiveFeed({
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.56fr)] lg:items-start">
           <div>
-            <h1 className="max-w-[9ch] text-[2.7rem] font-semibold leading-[0.96] tracking-[-0.06em] text-[var(--page-fg)] sm:text-[3.6rem] lg:text-[4.4rem]">
+            <h1 className="max-w-[25ch] text-[1.7rem] font-semibold leading-[0.96] tracking-[-0.06em] text-[var(--page-fg)] sm:text-[1.6rem] lg:text-[2.4rem]">
               {heading}
             </h1>
           </div>

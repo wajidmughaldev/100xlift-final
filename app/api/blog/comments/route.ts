@@ -110,14 +110,9 @@ export async function POST(request: Request) {
     const authorName = trimToLength(body.authorName, MAX_NAME_LENGTH)
     const authorEmail = trimToLength(body.authorEmail, MAX_EMAIL_LENGTH)
     const content = trimToLength(body.content, MAX_COMMENT_LENGTH)
-    const website = String(body.website || '').trim()
 
     if (!Number.isInteger(postId) || postId <= 0) {
       return NextResponse.json({ error: 'A valid post is required.' }, { status: 400 })
-    }
-
-    if (website) {
-      return NextResponse.json({ error: 'Comment request was rejected.' }, { status: 400 })
     }
 
     const rateLimitKey = `${getClientIp(request)}:${postId}`

@@ -172,7 +172,6 @@ function CommentsSection({
   const [authorName, setAuthorName] = useState('')
   const [authorEmail, setAuthorEmail] = useState('')
   const [content, setContent] = useState('')
-  const [website, setWebsite] = useState('')
   const [replyTo, setReplyTo] = useState<BlogComment | null>(null)
   const [sortBy, setSortBy] = useState<CommentSortOption>('oldest')
   const [likedComments, setLikedComments] = useState<Record<number, boolean>>({})
@@ -247,7 +246,6 @@ function CommentsSection({
           authorName,
           authorEmail,
           content,
-          website,
         }),
       })
 
@@ -264,7 +262,6 @@ function CommentsSection({
       setAuthorName('')
       setAuthorEmail('')
       setContent('')
-      setWebsite('')
       setReplyTo(null)
       setStatus('sent')
       setMessage('Your comment has been sent.')
@@ -462,15 +459,6 @@ function CommentsSection({
               />
             </label>
           </div>
-          <label className="sr-only" aria-hidden="true">
-            Website
-            <input
-              tabIndex={-1}
-              autoComplete="off"
-              value={website}
-              onChange={(event) => setWebsite(event.target.value)}
-            />
-          </label>
           <label className="grid gap-2 text-sm font-medium text-[var(--page-fg)]/72">
             Comment
             <textarea
