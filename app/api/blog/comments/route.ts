@@ -24,9 +24,34 @@ function getClientIp(request: Request) {
   )
 }
 
+function getAllowedOriginHosts() {
+  const values = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.SITE_URL,
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+  ]
+
+  return values.flatMap((value) => {
+    if (!value) return []
+
+    try {
+      return [new URL(value).host]
+    } catch {
+      return [value.replace(/^https?:\/\//, "").replace(/\/+$/, "")]
+    }
+  })
+}
+
+function isLocalHostAlias(host: string) {
+  const hostname = host.split(":")[0]
+  return hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1"
+}
+
 function isAllowedOrigin(request: Request) {
   const origin = request.headers.get('origin')
-  const host = request.headers.get('x-forwarded-host') || request.headers.get('host')
+  const host = (request.headers.get('x-forwarded-host') || request.headers.get('host') || "")
+    .split(",")[0]
+    .trim()
 
   if (!origin) {
     return process.env.NODE_ENV !== 'production'
@@ -35,7 +60,18 @@ function isAllowedOrigin(request: Request) {
   if (!host) return false
 
   try {
-    return new URL(origin).host === host
+    const originHost = new URL(origin).host
+    if (originHost === host) return true
+
+    if (
+      process.env.NODE_ENV !== "production" &&
+      isLocalHostAlias(originHost) &&
+      isLocalHostAlias(host)
+    ) {
+      return originHost.split(":")[1] === host.split(":")[1]
+    }
+
+    return getAllowedOriginHosts().includes(originHost)
   } catch {
     return false
   }
