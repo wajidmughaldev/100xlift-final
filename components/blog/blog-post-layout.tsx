@@ -143,8 +143,8 @@ function TrendingSidebar({
             >
               <PostImage
                 post={item}
-                wrapperClassName="relative h-[84px] w-[84px] overflow-hidden rounded-[6px]"
-                className="rounded-[6px] object-cover"
+                wrapperClassName="relative h-[84px] w-[84px] overflow-hidden rounded-[6px] bg-black"
+                className="rounded-[6px] object-contain"
               />
               <div className="min-w-0 space-y-2">
                 <p className="text-xs text-[var(--page-fg)]/52">{item.dateLabel}</p>
@@ -664,8 +664,8 @@ export default function BlogPostLayout({ post, relatedPosts, trendingPosts, comm
                     >
                       <PostImage
                         post={item}
-                        wrapperClassName="relative h-[220px] w-full overflow-hidden rounded-[8px]"
-                        className="rounded-[8px] object-cover"
+                        wrapperClassName="relative h-[220px] w-full overflow-hidden rounded-[8px] bg-black"
+                        className="rounded-[8px] object-contain"
                       />
                       <div className="mt-4 space-y-3">
                         <div className="flex flex-wrap items-center gap-2">

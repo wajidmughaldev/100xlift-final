@@ -95,8 +95,8 @@ function BlogCard({ post }: { post: BlogMappedPost }) {
       <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-[6px]">
         <PostImage
           post={post}
-          wrapperClassName="relative h-[270px] w-full overflow-hidden rounded-[6px]"
-          className="rounded-[6px] object-cover"
+          wrapperClassName="relative h-[270px] w-full overflow-hidden rounded-[6px] bg-black"
+          className="rounded-[6px] object-contain"
         />
       </Link>
       <div className="space-y-4">
@@ -137,8 +137,8 @@ function TrendingPost({ post }: { post: BlogMappedPost }) {
     >
       <PostImage
         post={post}
-        wrapperClassName="relative h-[108px] w-[108px] overflow-hidden rounded-[6px] sm:h-[132px] sm:w-[132px]"
-        className="rounded-[6px] object-cover"
+        wrapperClassName="relative h-[108px] w-[108px] overflow-hidden rounded-[6px] bg-black sm:h-[132px] sm:w-[132px]"
+        className="rounded-[6px] object-contain"
       />
       <div className="flex min-w-0 flex-col justify-center gap-2.5">
         <p className="text-xs text-[var(--page-fg)]/52 sm:text-sm">{post.dateLabel}</p>
@@ -411,8 +411,8 @@ export default function BlogArchiveFeed({
               <div className="relative">
                 <PostImage
                   post={featuredPost}
-                  wrapperClassName="relative h-[300px] w-full overflow-hidden rounded-[6px]"
-                  className="rounded-[6px] object-cover"
+                  wrapperClassName="relative h-[300px] w-full overflow-hidden rounded-[6px] bg-black"
+                  className="rounded-[6px] object-contain"
                 />
                 <div className="absolute inset-0 rounded-[6px] bg-[linear-gradient(180deg,rgba(22,19,47,0.18),rgba(22,19,47,0.66))]" />
                 <div className="absolute inset-x-0 bottom-0 flex min-h-[8rem] flex-col justify-end gap-3 px-6 pb-6 text-white sm:px-8 sm:pb-8">
