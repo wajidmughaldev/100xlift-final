@@ -559,8 +559,8 @@ export default function BlogPostLayout({ post, relatedPosts, trendingPosts, comm
       <Navigation />
 
       <section className="mx-auto max-w-[1320px] pb-20 pt-6 sm:pb-24 sm:pt-10 lg:pt-12">
-        <div className="mb-8 text-sm text-[var(--page-fg)]/56">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="mb-8 text-center text-sm text-[var(--page-fg)]/56">
+          <div className="mx-auto flex max-w-[760px] flex-wrap items-center justify-center gap-2">
             <Link href="/" className="transition hover:text-[var(--page-fg)]">
               Home
             </Link>
