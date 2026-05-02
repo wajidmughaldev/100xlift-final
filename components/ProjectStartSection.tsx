@@ -171,7 +171,7 @@ const ProjectStartSection = () => {
             </h2>
           </div>
 
-          <IconStrip items={iconItems} className="mt-5 gap-3 sm:gap-4 lg:mt-0" openInNewTab={false} />
+          <IconStrip items={iconItems} className="mt-5 gap-2 sm:gap-2 lg:mt-0" openInNewTab={false} />
         </div>
 
         <div className="flex min-h-[520px] min-w-0 flex-col justify-between bg-[var(--panel-bg)] px-4 py-6 sm:min-h-[620px] sm:px-8 sm:py-8 lg:min-h-[720px] lg:px-10 lg:py-10">

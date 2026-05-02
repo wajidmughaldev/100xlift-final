@@ -20,7 +20,7 @@ const IconStrip = ({
   openInNewTab = true,
 }: IconStripProps) => {
   return (
-    <div className={`flex flex-wrap items-center gap-4 ${className}`}>
+    <div className={`flex flex-wrap items-center  ${className}`}>
       {items.map((item) => (
         <a
           key={item.label}

@@ -41,6 +41,7 @@ const Navigation = () => {
   const [proposalProjectType, setProposalProjectType] = useState('Web App')
   const [isStickyActive, setIsStickyActive] = useState(false)
   const [activeSection, setActiveSection] = useState('#services')
+  const shouldForceSticky = pathname !== '/'
   const isDarkMode = theme === 'dark'
   const logoSrc = isDarkMode ? '/white-logo.svg' : '/black-logo.svg'
   const sectionLinks = useMemo(() => navLinks.filter((link) => link.type === 'section'), [])
@@ -157,18 +158,18 @@ const Navigation = () => {
   return (
     <>
       <header
-        className={`${isStickyActive ? 'fixed inset-x-0 top-0 z-40' : 'relative'} mb-2 transition-all duration-300 ${
-          isStickyActive
+        className={`${isStickyActive || shouldForceSticky ? 'fixed inset-x-0 top-0 z-40' : 'relative'} mb-2 transition-all duration-300 ${
+          isStickyActive || shouldForceSticky
             ? 'bg-[var(--header-glass)] py-2 backdrop-blur-xl'
             : 'bg-transparent py-0'
         }`}
       >
         <div
           className={`flex items-center justify-between transition-all duration-300 ${
-            isStickyActive
+            isStickyActive || shouldForceSticky
               ? 'h-[64px] translate-y-0 scale-[0.985] md:h-[84px]'
               : 'h-[92px] translate-y-0 scale-100 md:h-[120px]'
-          } ${isStickyActive ? 'mx-auto w-11/12' : ''}`}
+          } ${isStickyActive || shouldForceSticky ? 'mx-auto w-11/12' : ''}`}
         >
           <Link href="/" className="shrink-0">
             <Image
@@ -183,7 +184,7 @@ const Navigation = () => {
 
           <ul
             className={`hidden list-none items-center gap-4 rounded-full px-6 py-3.5 transition-colors duration-300 min-[1280px]:flex xl:gap-6 xl:px-8 ${
-              isStickyActive && 'bg-transparent' 
+              isStickyActive || shouldForceSticky ? 'bg-transparent' : ''
             }`}
           >
             {navLinks.map((link) => {
@@ -261,7 +262,7 @@ const Navigation = () => {
         </div>
       </header>
 
-      {isStickyActive ? <div aria-hidden="true" className="h-[80px] md:h-[100px]" /> : null}
+      {isStickyActive || shouldForceSticky ? <div aria-hidden="true" className="h-[80px] md:h-[100px]" /> : null}
 
       {isMobileMenuOpen ? (
         <div className="fixed inset-0 z-50 bg-[var(--mobile-overlay)] p-4 backdrop-blur-sm md:hidden">
