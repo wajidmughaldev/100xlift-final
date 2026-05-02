@@ -83,6 +83,11 @@ const portfolioItems = [
     description:
       'A web-based internal platform focused on usability, reduced friction, and stronger information hierarchy for repeat daily tasks and team workflows.',
   },
+  {
+    title: 'WordPress Malware Recovery',
+    description:
+      'A two-site WordPress remediation project that removed fake verification injections, exposed hidden administrator behavior, quarantined a rogue plugin, and documented safe live-site cleanup steps.',
+  },
 ]
 
 const organizationSchema = {

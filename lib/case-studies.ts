@@ -468,4 +468,86 @@ export const caseStudies: CaseStudyRecord[] = [
       '/casestudy/ultimate%20content%20calender/Screenshot%20%2894%29.png',
     ],
   },
+  {
+    id: 7,
+    title: 'WordPress Malware Recovery',
+    slug: 'wordpress-malware-recovery',
+    image: '/casestudy/Biocare/biocare.png',
+    techLabel: 'Project Type',
+    techValue: 'Security Remediation',
+    tags: ['WordPress', 'Malware Cleanup', 'Hardening'],
+    description:
+      'Cleaned and hardened two legacy WordPress/WooCommerce client sites after a recurring fake verification popup, hidden admin users, and malicious theme/plugin injections were discovered.',
+    subtitle:
+      'A practical WordPress security cleanup that removed active injections, exposed hidden backdoors, and created a live-site remediation process clients could follow safely.',
+    snapshot: [
+      { label: 'Clients', value: 'Biocare and Nealsyard' },
+      { label: 'Platform', value: 'WordPress, WooCommerce, Flatsome' },
+      { label: 'Scope', value: 'Malware audit, file cleanup, database checks, plugin review, hardening, live instructions' },
+      { label: 'Engagement', value: 'Emergency remediation and security documentation' },
+    ],
+    metrics: [
+      { label: 'Sites Audited', value: '2' },
+      { label: 'Backdoors Confirmed', value: 'Theme + Plugin' },
+      { label: 'Known Payload Scan', value: 'Files + Database' },
+      { label: 'Client Handoff', value: 'Live checklist' },
+    ],
+    techStack: ['WordPress', 'WooCommerce', 'PHP', 'MySQL', 'Flatsome', 'WPCode', 'Wordfence'],
+    sections: [
+      {
+        title: 'Client Background',
+        paragraphs: [
+          'Both websites were older client WordPress builds that needed urgent help after visitors started seeing a fake browser verification screen.',
+          'The issue was sensitive because the popup looked similar to a security challenge, but asked users to run a command on their computer, which is a strong sign of ClickFix-style social engineering.',
+        ],
+      },
+      {
+        title: 'The Problem',
+        bullets: [
+          'Injected scripts kept returning after being removed manually',
+          'One site had suspicious JavaScript injected into theme files',
+          'Another site had hidden administrator accounts that did not appear correctly in the WordPress dashboard',
+          'A rogue plugin was hiding itself from the Plugins page and filtering the Users list',
+          'The client needed clear proof, cleanup steps, and live-site instructions without breaking the stores',
+        ],
+      },
+      {
+        title: 'What We Investigated',
+        bullets: [
+          'Scanned parent and child theme files for known injection markers',
+          'Checked WordPress options, posts, WPCode snippets, and plugin tables for stored malware payloads',
+          'Reviewed active and custom plugins for hidden-user hooks, remote loaders, clipboard abuse, and obfuscation',
+          'Decoded the injected behavior enough to confirm it was loading remote JavaScript for a fake verification popup',
+          'Compared dashboard behavior against raw database administrator records to expose hidden accounts',
+        ],
+      },
+      {
+        title: 'What We Fixed',
+        bullets: [
+          'Removed malicious script blocks from infected theme files',
+          'Deactivated and quarantined a rogue plugin that hid administrator accounts and hid itself from the plugin list',
+          'Added WordPress file editor hardening through wp-config.php',
+          'Blocked PHP execution inside uploads with an .htaccess rule',
+          'Prepared SQL checks for live databases with correct table-prefix guidance',
+          'Documented password, salt, admin-account, cache, and hosting credential rotation steps',
+        ],
+      },
+      {
+        title: 'Outcome',
+        bullets: [
+          'The fake verification popup was removed from the local backups',
+          'Known malware indicators were no longer present in cleaned theme files, active plugin files, or checked database areas',
+          'Hidden administrator behavior was traced to a specific malicious plugin instead of guesswork',
+          'The client received a live-site remediation checklist with exact files, SQL checks, and security-hardening actions',
+          'The cleanup process became repeatable for similar WordPress incidents',
+        ],
+      },
+    ],
+    outcomes: [
+      'Removed active fake verification injection',
+      'Identified and quarantined a hidden-admin backdoor plugin',
+      'Delivered a live remediation checklist for safer production cleanup',
+    ],
+    gallery: ['/casestudy/Biocare/biocare.png'],
+  },
 ]

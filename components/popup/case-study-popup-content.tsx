@@ -9,6 +9,14 @@ type CaseStudyPopupContentProps = {
 }
 
 const CaseStudyPopupContent = ({ caseStudy }: CaseStudyPopupContentProps) => {
+  const handleStartProject = () => {
+    window.dispatchEvent(
+      new CustomEvent('open-proposal-modal', {
+        detail: { projectType: caseStudy.techValue || 'Website' },
+      }),
+    )
+  }
+
   const projectFacts: Array<[string, string]> = [
     [caseStudy.techLabel, caseStudy.techValue],
     ...(caseStudy.snapshot?.map((item) => [item.label, item.value] as [string, string]) ?? []),
@@ -72,6 +80,7 @@ const CaseStudyPopupContent = ({ caseStudy }: CaseStudyPopupContentProps) => {
         description="We can apply the same strategic process, UX structure, and delivery framework to build a scalable solution for your product goals."
         checklist={checklist.slice(0, 4)}
         ctaLabel="Start your project"
+        onCtaClick={handleStartProject}
       />
 
       <SiteFooter />

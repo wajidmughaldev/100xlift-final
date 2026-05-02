@@ -10,6 +10,7 @@ type ShowcaseFeatureSectionProps = {
   description: string
   checklist: string[]
   ctaLabel: string
+  onCtaClick?: () => void
 }
 
 const ShowcaseFeatureSection = ({
@@ -19,6 +20,7 @@ const ShowcaseFeatureSection = ({
   description,
   checklist,
   ctaLabel,
+  onCtaClick,
 }: ShowcaseFeatureSectionProps) => {
   return (
     <section className="pb-12 pt-2 text-[var(--page-fg)]">
@@ -62,6 +64,7 @@ const ShowcaseFeatureSection = ({
 
             <button
               type="button"
+              onClick={onCtaClick}
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#b8ea18] px-5 py-3 text-sm font-bold text-[#101408] transition hover:bg-[#cdfb45]"
             >
               {ctaLabel}

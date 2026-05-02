@@ -12,8 +12,9 @@ const inter = Inter({
 const siteUrl = "https://100xlift.com";
 
 export const metadata: Metadata = {
-  title: "100XLift",
-  description: "100XLift digital systems for growth-focused businesses",
+  title: "100XLift | Web Design, SEO & Digital Growth Systems",
+  description:
+    "100XLift helps growth-focused businesses improve websites, UX, SEO, branding, and digital systems that support trust, leads, and conversion.",
   metadataBase: new URL(siteUrl),
   applicationName: "100XLift",
   keywords: [
@@ -33,8 +34,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "100XLift",
-    description: "100XLift digital systems for growth-focused businesses",
+    title: "100XLift | Web Design, SEO & Digital Growth Systems",
+    description:
+      "Web design, UX, SEO, branding, and digital systems for businesses that need stronger trust, leads, and conversion.",
     siteName: "100XLift",
     images: [
       {
@@ -47,8 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "100XLift",
-    description: "100XLift digital systems for growth-focused businesses",
+    title: "100XLift | Web Design, SEO & Digital Growth Systems",
+    description:
+      "Web design, UX, SEO, branding, and digital systems for growth-focused businesses.",
     images: ["/100xlift-building.png"],
   },
   robots: {

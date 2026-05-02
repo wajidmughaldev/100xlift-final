@@ -48,6 +48,10 @@ const proposalTypeOptions = [
   { label: 'UI/UX Design', value: 'UI/UX Design' },
   { label: 'SEO', value: 'SEO' },
   { label: 'Branding', value: 'Branding' },
+  { label: 'Security Remediation', value: 'Security Remediation' },
+  { label: 'CRO + Performance', value: 'CRO + Performance' },
+  { label: 'SaaS Product Build', value: 'SaaS Product Build' },
+  { label: 'Healthcare Platform', value: 'Healthcare Platform' },
 ]
 const budgetOptions = [
   { label: 'Select budget', value: '', disabled: true },
