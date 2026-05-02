@@ -77,7 +77,7 @@ const Whyus = () => {
 
                 <IconStrip
                     items={iconItems}
-                    className="justify-start pt-3 lg:justify-start"
+                    className="justify-start pt-3 gap-2 lg:justify-start"
                     openInNewTab={false}
                 />
             </div>
